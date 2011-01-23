@@ -4,15 +4,25 @@
 **  @author immeëmosol (programmer dot willfris at nl) 
 **  @date 2011-01-21
 **  Created: ven 2011-01-21, 10:22.09 CET
-**  Last modified: ven 2011-01-21, 11:48.27 CET
+**  Last modified: sab 2011-01-22, 21:57.14 CET
 **/
-vd($_POST);
-ob_start();
 require '/srv/web/my_lib/autoloader.inc.php';
-$reservation  =  new Reservation();
-$formulier    =  new Form( $reservation );
-echo $formulier;
-if ( 1 )
+ob_start();
+echo <<<CSS
+<style>
+:required:hover , :required:active , :required:focus
+{
+	outline-color  :  rgba( 255 , 0 , 0 , 1 );
+}
+:required:active
+{
+	border-color  :  rgba( 255 , 0 , 0 , 0.8 );
+}
+</style>
+CSS;
+$reserveringsformulier    =  new Form( new Reservation() );
+echo $reserveringsformulier;
+if ( 0 )
 {
 	$html  =  ob_get_clean();
 	$tidy  =  new Tidy();

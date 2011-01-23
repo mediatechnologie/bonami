@@ -4,48 +4,62 @@
 **  @author immeëmosol (programmer dot willfris at nl) 
 **  @date 2011-01-21
 **  Created: ven 2011-01-21, 08:46.55 CET
-**  Last modified: ven 2011-01-21, 11:02.11 CET
+**  Last modified: sab 2011-01-22, 22:00.32 CET
 **/
 
 class Event extends DataObject
 {
 	public function __construct ()
 	{
+		$this->name( 'Gebeurtenis' );
+
 		//  int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'unieke identifier'
-		$this->datafields[]  =  new DataField(
+		$this->field(
 			'eventID' ,
-			DataField::INT ,
-			''/*restrictie*/
+			DataField::POS_INT ^ DataField::PK ^ DataField::AUTO ,
+			10 ,
+			NULL ,
+			'unieke identifier'
 		);
 		//  datetime NOT NULL COMMENT 'datum waarop het event gebeurd'
-		$this->datafields[]  =  new DataField(
+		$this->field(
 			'event_date' ,
 			DataField::DATETIME ,
-			''/*restrictie*/
+			NULL ,
+			NULL ,
+			'datum waarop het event gebeurd'
 		);
 		//  varchar(111) NOT NULL COMMENT 'de naam van het event'
-		$this->datafields[]  =  new DataField(
+		$this->field(
 			'title' ,
 			DataField::STRING ,
-			''/*restrictie*/
+			111 ,
+			NULL ,
+			'de naam van het event'
 		);
 		//  text NOT NULL COMMENT 'beschrijvende tekst van het event/de gebeurtenis'
-		$this->datafields[]  =  new DataField(
+		$this->field(
 			'description' ,
 			DataField::TEXT ,
-			''/*restrictie*/
+			NULL ,
+			NULL ,
+			'beschrijvende tekst van het event/de gebeurtenis'
 		);
 		//  tinyint(1) DEFAULT '0' COMMENT 'of het event gepubliceerd mag worden'
-		$this->datafields[]  =  new DataField(
+		$this->field(
 			'published' ,
 			DataField::BOOLEAN ,
-			''/*restrictie*/
+			NULL ,
+			FALSE ,
+			'of het event gepubliceerd mag worden'
 		);
 		//  int(3) unsigned DEFAULT NULL COMM. 'het aantal plaatsen voor het event'
-		$this->datafields[]  =  new DataField(
+		$this->field(
 			'capacity' ,
-			DataField::POS_INT ,
-			''/*restrictie*/
+			DataField::POS_INT ^ DataField::OPTIONAL ,
+			array() ,#restrictions
+			NULL ,
+			'het aantal plaatsen voor het event'
 		);
 	}
 }
